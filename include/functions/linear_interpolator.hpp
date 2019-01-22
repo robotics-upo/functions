@@ -5,6 +5,8 @@
 #include "functions.h"
 #include <string>
 #include <exception>
+#include <stdexcept>
+#include <cmath>
 
 // This code is based on the interpolation code of webpage: "http://www.bnikolic.co.uk/blog/cpp-map-interp.html" by B. Nikolic 
 
