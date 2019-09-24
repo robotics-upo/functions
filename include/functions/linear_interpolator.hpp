@@ -20,6 +20,7 @@ public:
   LinearInterpolator(const std::string filename_x, const std::string filename_y);
   
   double interpolate(double x);
+  bool inRange(double x);
 };
 
 LinearInterpolator::LinearInterpolator(const std::string filename)
@@ -51,6 +52,16 @@ LinearInterpolator::LinearInterpolator(const std::string filename_x, const std::
     insert(std::make_pair(v0[i], v1[i]));
   }
   
+}
+
+bool LinearInterpolator::inRange(double x) {
+  if (size() == 0) {
+    return false;
+    
+  }
+
+  auto i = upper_bound(x);
+  return i != end() && i != begin();
 }
 
 double LinearInterpolator::interpolate(double x)
