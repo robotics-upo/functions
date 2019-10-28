@@ -8,6 +8,7 @@
 #include <vector>
 #include <functions/functions.h>
 #include <functional>
+#include <iostream>
 
 namespace functions {
 
@@ -56,6 +57,16 @@ template <typename T>  T SimpleProfiler::profileFunction(std::function<T()> func
     ofs_ << (stop - start).count() << " ";
 
     return res;
+}
+
+template <> void SimpleProfiler::profileFunction<void>(std::function<void()> func) {
+    auto start = std::chrono::high_resolution_clock::now();
+    func();
+
+    auto stop = std::chrono::high_resolution_clock::now();
+
+    times_.push_back((stop - start).count());
+    ofs_ << (stop - start).count() << " ";
 }
 
 std::string SimpleProfiler::displayStats() const {

@@ -35,4 +35,11 @@ int main(int argc, char **argv) {
 
     cout << pro.displayStats() << endl;
 
+    // Test reset
+
+    if (argc > 3) {
+        cout << "Testing reset. New stats: " << endl;
+        pro.reset();
+        cout << pro.displayStats() << endl;
+    }
 }
