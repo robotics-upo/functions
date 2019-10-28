@@ -40,6 +40,7 @@ SimpleProfiler::SimpleProfiler(const std::string &file_):ofs_(file_),total_time_
 }
 
 SimpleProfiler::~SimpleProfiler() {
+    std::cout << "Profiling stats: " << displayStats() << std::endl;
     ofs_.close();
 }
 
