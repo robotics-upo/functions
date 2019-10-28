@@ -32,6 +32,7 @@ class SimpleProfiler {
     protected:
         std::ofstream ofs_;
         std::vector<long> times_;
+        std::vector<long> stamps_;
         long total_time_;
         std::string filename_;
 };
@@ -46,27 +47,33 @@ SimpleProfiler::~SimpleProfiler() {
 }
 
 template <typename T>  T SimpleProfiler::profileFunction(std::function<T()> func) {
-    auto start = std::chrono::high_resolution_clock::now();
-    T res;
+    using namespace std::chrono;
+    auto start = high_resolution_clock::now();
+    T res = func();
 
-    res = func();
+    auto stop = high_resolution_clock::now();
 
-    auto stop = std::chrono::high_resolution_clock::now();
+    auto dtn = start.time_since_epoch();
 
     times_.push_back((stop - start).count());
-    ofs_ << (stop - start).count() << " ";
+
+    ofs_ << dtn.count() << " " << (stop - start).count() << "\n";
 
     return res;
 }
 
 template <> void SimpleProfiler::profileFunction<void>(std::function<void()> func) {
-    auto start = std::chrono::high_resolution_clock::now();
+    using namespace std::chrono;
+    auto start = high_resolution_clock::now();
     func();
 
-    auto stop = std::chrono::high_resolution_clock::now();
+    auto stop = high_resolution_clock::now();
+
+    auto dtn = start.time_since_epoch();
 
     times_.push_back((stop - start).count());
-    ofs_ << (stop - start).count() << " ";
+
+    ofs_ << dtn.count() << " " << (stop - start).count() << "\n";
 }
 
 std::string SimpleProfiler::displayStats() const {
