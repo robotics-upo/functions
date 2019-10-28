@@ -23,7 +23,8 @@ add_library(functions
 )
 add_executable(test_interpolator src/test/test_interpolator.cpp)
 target_link_libraries(test_interpolator functions)
-
+add_executable(test_profiler src/test/test_profiler.cpp)
+target_link_libraries(test_profiler functions)
 
 
 ## Mark executables and/or libraries for installation
