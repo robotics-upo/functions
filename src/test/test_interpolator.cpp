@@ -23,6 +23,8 @@ int main(int argc, char **argv) {
   }
    
   cout << "f(" << argv[1] << ") = " << lin->interpolate(atof(argv[1])) << endl;
+
+  cout << "Inrange (" << argv[1] << ") Returns: " << lin->inRange(atof(argv[1])) << endl;
   
   
   delete lin;

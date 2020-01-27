@@ -36,7 +36,6 @@ LinearInterpolator::LinearInterpolator(const std::string filename_x, const std::
 bool LinearInterpolator::inRange(double x) {
   if (size() == 0) {
     return false;
-    
   }
 
   auto i = upper_bound(x);
