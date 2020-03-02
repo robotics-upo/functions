@@ -27,10 +27,8 @@ int main(int argc, char **argv) {
     SimpleProfiler pro(file);
 
     for (unsigned int i = 0;i < n_calls; i++, angle += 0.01) {
-        // std::function<double()> f = std::bind(f, angle);
         auto f_ = std::bind(f, angle);
         double a = pro.profileFunction<double>(f_);
-        cout << "Call " << i << ". Input = " << angle << " result: " << a << "\n";
     }
 
     cout << pro.displayStats() << endl;
